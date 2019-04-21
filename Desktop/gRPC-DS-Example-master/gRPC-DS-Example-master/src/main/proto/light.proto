@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package com.example.grpc;
+
+option java_multiple_files = true;
+import "google/protobuf/empty.proto";
+
+service Light {
+    //on/off method 
+    rpc LightSwitch(google.protobuf.Empty) returns (SwitchStatus) {}
+    rpc Brightness(BrightRequest) returns (BrightResponse) {}
+}
+
+//should be switchresponse
+message SwitchStatus {
+  string lightsOnOff = 1;
+}
+
+message BrightRequest {
+    string percentage = 1;
+}
+
+message BrightResponse {
+    string percetnageNow = 1;
+}
