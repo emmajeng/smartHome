@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package com.example.grpc;
+
+option java_multiple_files = true;
+import "google/protobuf/empty.proto";
+
+service Heat {
+    rpc Heat(google.protobuf.Empty) returns (stream HeatStatus) {}
+    rpc getStatus(google.protobuf.Empty) returns (HeatStatus) {}
+    
+    rpc getProvider(ProviderRequest) returns (ProviderResponse) {}
+}
+
+message HeatStatus {
+  int32 percentageHeated = 1;
+}
+
+message ProviderRequest {
+    string providerName = 1;
+    string providerAddress = 2;
+    string costPerMonth = 3;
+}
+
+message ProviderResponse {
+    string acknowledgement = 1;
+}

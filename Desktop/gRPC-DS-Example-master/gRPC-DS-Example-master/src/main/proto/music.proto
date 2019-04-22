@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package com.example.grpc;
+
+option java_multiple_files = true;
+import "google/protobuf/empty.proto";
+
+/**
+ * This is an example of a protobuf message.
+ */
+
+service MusicSystem {
+    
+    rpc getPlaylist(google.protobuf.Empty) returns (Playlist) {}
+    rpc streamPlays(google.protobuf.Empty) returns (stream Song) {}
+}
+
+message Playlist {
+  repeated Song songs = 1;
+}
+
+message Song {
+    string title = 1;
+    string artist = 2;
+    string genre = 3;
+}

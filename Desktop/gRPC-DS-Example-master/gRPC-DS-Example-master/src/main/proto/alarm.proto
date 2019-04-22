@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.example.grpc;
+
+option java_multiple_files = true;
+import "google/protobuf/empty.proto";
+
+service Alarm {
+    //on/off method 
+    rpc AlarmSwitch(google.protobuf.Empty) returns (AlarmStatus) {}
+    
+    rpc PanicAlarm(google.protobuf.Empty) returns (AlarmStatus) {}
+}
+
+//should be switchresponse
+message AlarmStatus {
+  string alarmOnOff = 1;
+}
