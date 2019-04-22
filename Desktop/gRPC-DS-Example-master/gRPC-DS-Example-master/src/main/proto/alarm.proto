@@ -16,3 +16,7 @@ service Alarm {
 message AlarmStatus {
   string alarmOnOff = 1;
 }
+
+
+
+

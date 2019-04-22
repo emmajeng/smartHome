@@ -97,8 +97,25 @@ public class MusicClient implements ServiceObserver {
     
      public void streamPlays(){
        System.out.println("Streaming...");
+       
+        try {
 
-    }
+            new Thread() {
+                public void run() {
+                    Empty request = Empty.newBuilder().build();
+
+                    Iterator<Song> response = blockingStub.streamPlays(request);
+                    while (response.hasNext()) {
+                        System.out.println(response.next().toString());
+                    }
+                }
+            }.start();
+
+        } catch (RuntimeException e) {
+            logger.log(Level.WARNING, "RPC failed", e);
+            return;
+        }
+     }
     
     public static void main(String[] args) throws Exception {
         MusicClient client = new MusicClient();

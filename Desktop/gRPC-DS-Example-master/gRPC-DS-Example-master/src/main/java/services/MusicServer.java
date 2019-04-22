@@ -49,6 +49,8 @@ public class MusicServer {
                 System.err.println("*** server shut down");
             }
         });
+        
+    
     }
 
     private void stop() {
@@ -74,6 +76,7 @@ public class MusicServer {
         final MusicServer server = new MusicServer();
         server.start();
         server.blockUntilShutdown();
+        
     }
 
     private class MusicImpl extends MusicSystemGrpc.MusicSystemImplBase {
@@ -91,7 +94,7 @@ public class MusicServer {
 
         }
 
-        /*
+        /* issues with the add
         public void getPlaylist(Empty request,
                 StreamObserver<Playlist> responseObserver) {
             Playlist all = Playlist.newBuilder().addGetPlaylist(songs).build();
